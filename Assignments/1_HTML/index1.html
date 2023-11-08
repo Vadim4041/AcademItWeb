@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/handler.php" method="post">
+    <label>
+        Put some text here <input type="text" placeholder="text" name="someText">
+    </label>
+    <br>
+    <label>
+        Text with multiple lines <textarea>
+Line 1
+Line 2
+        </textarea>
+    </label>
+    <br>
+    <label>
+        Checkbox <input type="checkbox" name="checkbox1">
+    </label>
+    <br>
+    <label>
+        Radio1 <input checked type="radio" value="1" name="radio1">
+    </label>
+    <label>
+        Radio2 <input type="radio" value="2" name="radio1">
+    </label>
+    <label>
+        Radio3 <input type="radio" value="3" name="radio1">
+    </label>
+
+    <br>
+    <label>
+        Select with one option <select name="selectOne">
+        <option selected value="1">option1</option>
+        <option value="2">option2</option>
+        <option value="3">option3</option>
+    </select>
+    </label>
+    <br>
+    <label>
+        Select with multiple options <select multiple name="selectMultiple">
+        <option selected value="1">option1</option>
+        <option value="2">option2</option>
+        <option value="3">option3</option>
+    </select>
+    </label>
+    <br>
+    <button type="submit">Send</button>
+    <br>
+</form>
+<a href="index2.html">Link to page 2</a>
+</body>
+</html>
