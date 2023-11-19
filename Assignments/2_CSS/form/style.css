@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+}
+
+
+.header h1 {
+    font-family: Arial, serif;
+    font-size: 25px;
+    padding: 10px;
+    color: #696868;
+    text-indent: 10px;
+}
+
+.form {
+    font-family: Arial, serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 3px;
+    background-color: #FEEED5;
+    line-height: 150%;
+    color: #696868;
+    width: 40%;
+}
+
+.form input, .form textarea {
+    width: 100%;
+    border: none;
+    height: 40px;
+    text-indent: 10px;
+    font-size: 16px;
+    font-family: Arial, serif;
+}
+
+.form textarea {
+    height: 100px;
+}
+
+.input-fields {
+    margin: 2%;
+}
+
+.instructions {
+    font-weight: normal;
+    margin: 2%;
+}
+
+.submit {
+    display: flex;
+    justify-content: right;
+}
+
+.submit_button {
+    background-color: #378BAF;
+    border: none;
+    color: white;
+    font-weight: bold;
+    width: 200px;
+    height: 30px;
+}
+
+.submit_button:hover {
+    background-color: black;
+}
+
+
