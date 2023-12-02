@@ -1,24 +1,24 @@
 .employees {
     font-family: Calibri, serif;
-    font-size: 20px;
-    border-collapse: collapse;
-    width: 40%;
-    margin: 1%;
+    font-size: 25px;
+    margin: 15px auto;
+    max-width: 850px;
+    width: 100%;
 }
 
-.employees th, .employees td {
-    padding: 1%;
-    border: 1px solid grey;
+.employees th,
+.employees td {
+    padding: 10px;
+    border: 1px solid #CCC;
 }
 
 .employees th {
     background-color: #3598DB;
-    color: white;
+    color: #FFF;
     text-align: left;
-    border: 1px solid white;
+    border: 1px solid #FFF;
 }
 
 .employees tr:nth-child(odd) {
-    background-color: #EEEEEE;
+    background-color: #EEE;
 }
-
