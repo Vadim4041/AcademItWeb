@@ -1,16 +1,16 @@
 .academ-it-course-web {
     background-color: #feeed5;
     color: #6F655A;
-    margin-left: 10px;
-    margin-top: 10px;
-    font-family: Serif, serif;
-    width: 36vw;
+    font-family: Arial, serif;
+    max-width: 720px;
+    box-sizing: border-box;
+    margin: 15px;
+    padding: 5px 15px 3px 11px;
 }
 
 .header {
     font-size: 25px;
     text-transform: uppercase;
-    width: 30vw;
     margin-bottom: 5px;
 }
 
@@ -26,11 +26,9 @@
 }
 
 .course-description {
-
     text-align: justify;
     line-height: normal;
     margin-bottom: 8px;
     font-size: 16px;
     text-indent: 15px;
-    font-family: serif;
 }
