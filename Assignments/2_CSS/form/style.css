@@ -2,51 +2,56 @@
     box-sizing: border-box;
 }
 
+.main {
+    font-family: Arial, serif;
+}
 
 .header h1 {
-    font-family: Arial, serif;
     font-size: 25px;
-    padding: 10px;
     color: #696868;
-    text-indent: 10px;
+    margin: 20px 10px 10px;
 }
 
 .form {
-    font-family: Arial, serif;
     font-size: 16px;
     font-weight: bold;
-    padding: 3px;
     background-color: #FEEED5;
-    line-height: 150%;
     color: #696868;
-    width: 40%;
+    max-width: 700px;
+    padding: 10px;
 }
 
-.form input, .form textarea {
+.form input,
+.form textarea {
     width: 100%;
     border: none;
     height: 40px;
-    text-indent: 10px;
     font-size: 16px;
-    font-family: Arial, serif;
+    margin-top: 10px;
+    padding: 10px;
 }
 
 .form textarea {
+    font-family: inherit;
     height: 100px;
+    resize: vertical;
 }
 
 .input-fields {
-    margin: 2%;
+    width: 100%;
+    padding: 15px;
 }
 
 .instructions {
     font-weight: normal;
-    margin: 2%;
+    padding-left: 15px;
+    margin-bottom: 15px;
 }
 
 .submit {
     display: flex;
     justify-content: right;
+    margin-right: 15px;
 }
 
 .submit_button {
@@ -54,12 +59,14 @@
     border: none;
     color: white;
     font-weight: bold;
-    width: 200px;
-    height: 30px;
+    padding: 10px;
 }
 
 .submit_button:hover {
-    background-color: black;
+    background-color: #3a7c9d;
 }
 
-
+.form input::placeholder,
+.form textarea::placeholder {
+    color: #A3ABAE;
+}

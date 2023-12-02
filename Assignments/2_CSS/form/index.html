@@ -2,35 +2,50 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Форма отправки заявки</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../reset.css">
 </head>
-<body>
+<body class="main">
 <div class="header">
     <h1>Отправить заявку</h1>
 </div>
 
 <div class="form">
     <form method="post">
-        <div class="input-fields"><label>Ваше имя <br> <input type="text" placeholder="Ваше имя *" name="name"></label>
+        <div class="input-fields">
+            <label>Ваше имя
+                <input type="text" placeholder="Ваше имя *" name="name" required>
+            </label>
         </div>
 
-        <div class="input-fields"><label>Ваш номер телефона <br> <input type="text" placeholder="Ваш номер телефона *" name="telephone-number"></label>
+        <div class="input-fields">
+            <label>Ваш номер телефона
+                <input type="text" placeholder="Ваш номер телефона *" name="telephone-number" required>
+            </label>
         </div>
 
-        <div class="input-fields"><label>Ваш email или VK <br> <input type="text" placeholder="Ваш email или VK *" name="email-or-vk"></label>
+        <div class="input-fields">
+            <label>Ваш email или VK
+                <input type="text" placeholder="Ваш email или VK *" name="email-or-vk" required>
+            </label>
         </div>
 
-        <div class="input-fields"><label> Комментарий <br> <textarea placeholder="Комментарий (не обязательно)" name="comment"></textarea></label>
+        <div class="input-fields">
+            <label> Комментарий
+                <textarea placeholder="Комментарий (не обязательно)" name="comment"></textarea>
+            </label>
         </div>
 
-        <div class="instructions"><label>Заполните и отправьте форму, и мы перезвоним вам по указанному номеру</label>
+        <div class="instructions">
+            <label>Заполните и отправьте форму, и мы перезвоним вам по указанному номеру</label>
         </div>
 
-        <div class="submit"><label>
-            <button type="submit" class="submit_button">Отправить заявку</button>
-        </label></div>
+        <div class="submit">
+            <label>
+                <button type="submit" class="submit_button">Отправить заявку</button>
+            </label>
+        </div>
     </form>
 </div>
 </body>
