@@ -1,24 +1,26 @@
 .academ-it-course-web {
-    background-color: #feeed5;
+    background-color: #FEEED5;
     color: #6F655A;
     font-family: Arial, serif;
-    max-width: 720px;
+    max-width: 745px;
     box-sizing: border-box;
     margin: 15px;
     padding: 5px 15px 3px 11px;
 }
 
 .header {
-    font-size: 25px;
+    font-size: 28px;
     text-transform: uppercase;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .subheader {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #658B9D;
-    line-height: 25px;
+    line-height: 28px;
+    margin-bottom: 5px;
 }
 
 .line-through {
@@ -27,8 +29,8 @@
 
 .course-description {
     text-align: justify;
-    line-height: normal;
-    margin-bottom: 8px;
-    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 10px;
+    font-size: 15px;
     text-indent: 15px;
 }

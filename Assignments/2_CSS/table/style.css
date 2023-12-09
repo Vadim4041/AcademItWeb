@@ -1,14 +1,14 @@
 .employees {
     font-family: Calibri, serif;
-    font-size: 25px;
-    margin: 15px auto;
-    max-width: 850px;
+    font-size: 22px;
+    margin: 1px auto;
+    max-width: 865px;
     width: 100%;
 }
 
 .employees th,
 .employees td {
-    padding: 10px;
+    padding: 14px;
     border: 1px solid #CCC;
 }
 
@@ -16,7 +16,6 @@
     background-color: #3598DB;
     color: #FFF;
     text-align: left;
-    border: 1px solid #FFF;
 }
 
 .employees tr:nth-child(odd) {

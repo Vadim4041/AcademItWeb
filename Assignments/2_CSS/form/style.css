@@ -2,44 +2,46 @@
     box-sizing: border-box;
 }
 
-.main {
+body {
     font-family: Arial, serif;
 }
 
 .header h1 {
-    font-size: 25px;
+    font-size: 29px;
     color: #696868;
     margin: 20px 10px 10px;
 }
 
 .form {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     background-color: #FEEED5;
     color: #696868;
-    max-width: 700px;
-    padding: 10px;
+    max-width: 740px;
+
 }
 
 .form input,
 .form textarea {
     width: 100%;
     border: none;
-    height: 40px;
-    font-size: 16px;
-    margin-top: 10px;
+    height: 35px;
+    font-size: 14px;
+    margin-top: 8px;
     padding: 10px;
 }
 
 .form textarea {
     font-family: inherit;
-    height: 100px;
+    height: 110px;
     resize: vertical;
+    margin-bottom: 5px;
 }
 
 .input-fields {
     width: 100%;
-    padding: 15px;
+    margin-left: 8px;
+    padding: 10px 30px 10px 10px;
 }
 
 .instructions {
@@ -54,16 +56,20 @@
     margin-right: 15px;
 }
 
-.submit_button {
+.submit-button {
     background-color: #378BAF;
     border: none;
-    color: white;
+    color: #FFFFFFFF;
+    font-size: 14px;
     font-weight: bold;
     padding: 10px;
+    margin-bottom: 13px;
+    margin-right: 7px;
 }
 
-.submit_button:hover {
-    background-color: #3a7c9d;
+.submit-button:hover {
+    background-color: #3A7C9D;
+    cursor: pointer;
 }
 
 .form input::placeholder,
