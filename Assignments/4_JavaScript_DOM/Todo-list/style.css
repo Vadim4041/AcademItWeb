@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    font-family: Arial, serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.to-do-list {
+    font-family: Arial, serif;
+    font-size: 14px;
+    margin: 10px;
+}
+
+.todo-list_content{
+    margin-left: 15px;
+    list-style-type: circle;
+}
+
+.list_button {
+    margin: 5px;
+}
+
+::placeholder {
+    font-size: 14px;
+}
+
+.add-new-note-button:hover {
+    cursor: pointer;
+}
