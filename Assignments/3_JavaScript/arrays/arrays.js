@@ -13,14 +13,14 @@
     const firstFiveElements = array1.slice(0, elementsCount);
     console.log("First five elements of array: " + firstFiveElements.join(", "));
 
-    const lastFiveElements = array1.slice(array1.length >= elementsCount ? array1.length - elementsCount : 0);
+    const lastFiveElements = array1.slice(array1.length - elementsCount);
     console.log("Last five elements of array: " + lastFiveElements.join(", "));
 
-    const evenElementsSum = array1.reduce(function (accumulator, element) {
-        return element % 2 === 0 ? accumulator + element : accumulator;
+    const evenNumbersSum = array1.reduce(function (evenNumbersSum, number) {
+        return number % 2 === 0 ? evenNumbersSum + number : evenNumbersSum;
     }, 0);
 
-    console.log("Sum of array elements that have even value: " + evenElementsSum);
+    console.log("Sum of array elements that have even value: " + evenNumbersSum);
 
     const array2Length = 100;
     const array2 = [];
@@ -31,13 +31,13 @@
 
     console.log("New array: " + array2.join(", "));
 
-    const evenElementsSquared = array2
-        .filter(function (element) {
-            return element % 2 === 0;
+    const evenNumbersSquares = array2
+        .filter(function (number) {
+            return number % 2 === 0;
         })
-        .map(function (element) {
-            return Math.pow(element, 2);
+        .map(function (number) {
+            return Math.pow(number, 2);
         });
 
-    console.log("Squared Even elements of new array: " + evenElementsSquared.join(", "));
+    console.log("Squared even numbers of new array: " + evenNumbersSquares.join(", "));
 })();
