@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    font-family: Arial, serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.main {
+    font-family: Arial, serif;
+    font-size: 16px;
+    margin: 10px;
+    line-height: 30px;
+}
+
+::placeholder {
+    font-size: 14px;
+}
+
+.button {
+    font-size: 16px;
+    margin-top: 15px;
+    padding: 10px
+}
+
+.button:hover {
+    cursor: pointer;
+}
