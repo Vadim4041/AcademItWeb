@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const newTodoNote = document.getElementById("new_note");
     const addNewNoteButton = document.getElementById("add_new_note_button");
 
+    newTodoNote.addEventListener("focus", function () {
+        document.querySelector("span.error_message").style.display = "none";
+    });
 
     function addNewNoteHandler() {
         let text = newTodoNote.value.trim();
 
         if (text.length === 0) {
+            document.querySelector("span.error_message").style.display = "inline";
             return;
         }
 
