@@ -21,7 +21,9 @@
     }, 0);
 
     console.log("Sum of array elements that have even value: " + evenNumbersSum);
+})();
 
+(function () {
     const array2Length = 100;
     const array2 = [];
 
