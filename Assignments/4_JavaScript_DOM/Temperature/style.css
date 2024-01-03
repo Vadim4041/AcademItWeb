@@ -3,14 +3,14 @@
 }
 
 .header {
-    font-family: Arial, serif;
+    font-family: Arial, sans-serif;
     font-size: 20px;
     font-weight: bold;
     margin: 10px;
 }
 
 .main {
-    font-family: Arial, serif;
+    font-family: Arial, sans-serif;
     font-size: 16px;
     margin: 10px;
     line-height: 30px;
@@ -23,9 +23,14 @@
 .button {
     font-size: 16px;
     margin-top: 15px;
-    padding: 10px
+    padding: 10px;
 }
 
-.button:hover {
+.button {
     cursor: pointer;
+}
+
+.error_message {
+    color: #FF0000FF;
+    font-weight: bold;
 }
