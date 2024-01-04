@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="jquery-3.7.1.js"></script>
+    <script defer src="TodoList.js"></script>
+</head>
+<body>
+<h1 class="header">
+    Todo list
+</h1>
+<div class="todo_list">
+    <label>
+        <input id="new_note" class="new_note" type="text" placeholder="Write here">
+    </label>
+    <button id="add_new_note_button" class="add_new_note_button" type="button">add</button>
+    <div><span class="error_message" style="display: none;">Error: Note cannot be empty</span></div>
+    <ul id="todo_list_content" class="todo_list_content"></ul>
+</div>
+</body>
+</html>
