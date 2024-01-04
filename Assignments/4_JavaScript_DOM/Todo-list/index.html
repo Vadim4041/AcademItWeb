@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To-do list</title>
+    <title>Todo list</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <script defer src="to-do-list.js"></script>
+    <script defer src="TodoList.js"></script>
 </head>
 <body>
-<div class="header">
-    To-do list
-</div>
-
-<div class="to-do-list">
+<h1 class="header">
+    Todo list
+</h1>
+<div class="todo_list">
     <label>
         <input id="new_note" class="new_note" type="text" placeholder="Write here">
     </label>
     <button id="add_new_note_button" class="add_new_note_button" type="button">add</button>
-    <span class="error_message" style="display: none;">Error: new note cannot be empty</span>
-    <ul id="todo-list_content" class="todo-list_content"></ul>
+    <div><span class="error_message" style="display: none;">Error: Note cannot be empty</span></div>
+    <ul id="todo_list_content" class="todo_list_content"></ul>
 </div>
 </body>
 </html>

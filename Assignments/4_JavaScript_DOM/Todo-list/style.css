@@ -3,21 +3,26 @@
 }
 
 .header {
-    font-family: Arial, serif;
+    font-family: Arial, sans-serif;
     font-size: 18px;
     font-weight: bold;
     margin: 10px;
 }
 
-.to-do-list {
-    font-family: Arial, serif;
+.todo_list {
+    font-family: Arial, sans-serif;
     font-size: 14px;
     margin: 10px;
 }
 
-.todo-list_content {
+.todo_list_content {
     margin-left: 15px;
+    margin-top: 15px;
     list-style-type: circle;
+}
+
+.button_group {
+    display: flex;
 }
 
 .list_button {
@@ -25,8 +30,12 @@
 }
 
 .error_message {
-    color: #FF0000FF;
+    color: #F00;
     font-weight: bold;
+}
+
+.invalid_input {
+    border-color: #F00;
 }
 
 ::placeholder {
