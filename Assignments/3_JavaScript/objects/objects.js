@@ -87,13 +87,11 @@
                     population: 17444609
                 }
             ]
-        },
+        }
     ];
 
     function getMaxCitiesCount(countries) {
-        return countries.reduce((maxCitiesCount, country) => {
-            return Math.max(country.cities.length, maxCitiesCount);
-        }, 0);
+        return countries.reduce((maxCitiesCount, country) => Math.max(country.cities.length, maxCitiesCount), 0);
     }
 
     console.log("Maximum cities count in all countries: " + getMaxCitiesCount(countries));
@@ -102,27 +100,23 @@
     function getCountriesWithMaxCitiesCount(countries) {
         const maxCitiesCount = getMaxCitiesCount(countries);
 
-        return countries.filter((country) => {
-            return country.cities.length === maxCitiesCount;
-        });
+        return countries.filter(country => country.cities.length === maxCitiesCount);
     }
 
     const countriesWithMaxCitiesCount = getCountriesWithMaxCitiesCount(countries);
     console.log("Countries with maximum cities count:");
 
     // Printing countries with cities and their population
-    countriesWithMaxCitiesCount.forEach((country) => {
+    countriesWithMaxCitiesCount.forEach(country => {
         console.log(country.name);
-        country.cities.forEach((city) => {
-            console.log(city.name + ", " + city.population + " citizens");
-        });
+        country.cities.forEach(city => console.log(city.name + ", " + city.population + " citizens"));
     });
 
     // Get object where keys are countries and values are total population
     function getCountriesWithPopulation(countries) {
         const countriesWithPopulation = {};
 
-        countries.forEach((country) => {
+        countries.forEach(country => {
             countriesWithPopulation[country.name] = country.cities.reduce((countryPopulation, city) => {
                 return countryPopulation + city.population;
             }, 0);
@@ -132,5 +126,6 @@
     }
 
     const countriesWithPopulation = getCountriesWithPopulation(countries);
+    console.log("Countries with their population:");
     console.log(countriesWithPopulation);
 })();
