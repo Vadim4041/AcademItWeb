@@ -1,9 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
 .academ-it-course-web {
     background-color: #FEEED5;
     color: #6F655A;
     font-family: Arial, sans-serif;
     max-width: 745px;
-    box-sizing: border-box;
     margin: 15px;
     padding: 5px 13px;
 }
