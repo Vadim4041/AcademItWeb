@@ -7,6 +7,8 @@
     font-size: 18px;
     font-weight: bold;
     margin: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .todo_list {
@@ -15,14 +17,31 @@
     margin: 10px;
 }
 
+.new_note {
+    width: 1788px;
+}
+
+.edit_note {
+    width: 1758px;
+}
+
+.note_block {
+    text-align: right;
+}
+
+.todo_note {
+    margin-top: 8px;
+    float: left;
+}
+
+li::marker {
+    margin-top: 10px;
+}
+
 .todo_list_content {
     margin-left: 15px;
     margin-top: 15px;
     list-style-type: circle;
-}
-
-.button_group {
-    display: flex;
 }
 
 .list_button {
