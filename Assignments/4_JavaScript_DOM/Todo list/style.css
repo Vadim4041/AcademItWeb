@@ -44,10 +44,6 @@ li::marker {
     list-style-type: circle;
 }
 
-.button_group {
-    display: flex;
-}
-
 .list_button {
     margin: 5px;
 }
