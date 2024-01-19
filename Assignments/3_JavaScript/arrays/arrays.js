@@ -2,29 +2,29 @@
     const array1 = [43, 36, 39, 45, 47, 47, 25, 3, 42, 14, 25, 29, 30, 0, 27];
     console.log("Array: " + array1.join(", "));
 
-    function sortArray(numbers) {
+    function sortArrayInDescendingOrder(numbers) {
         return numbers.sort((number1, number2) => number2 - number1);
     }
 
-    console.log("Array sorted in descending order: " + sortArray(array1).join(", "));
+    console.log("Array sorted in descending order: " + sortArrayInDescendingOrder(array1).join(", "));
 
-    function returnFirstNElements(array, elementsCount) {
+    function getFirstElements(array, elementsCount) {
         return array.slice(0, elementsCount);
     }
 
-    console.log("First five elements of array: " + returnFirstNElements(array1, 5).join(", "));
+    console.log("First five elements of array: " + getFirstElements(array1, 5).join(", "));
 
-    function lastNElements(array, elementsCount) {
+    function getlastElements(array, elementsCount) {
         return array.slice(-elementsCount);
     }
 
-    console.log("Last five elements of array: " + lastNElements(array1, 5).join(", "));
+    console.log("Last five elements of array: " + getlastElements(array1, 5).join(", "));
 
-    function sumUpEvenNumbers(numbers) {
+    function getEvenNumbersSum(numbers) {
         return numbers.reduce((evenNumbersSum, number) => number % 2 === 0 ? evenNumbersSum + number : evenNumbersSum, 0);
     }
 
-    console.log("Sum of array even numbers: " + sumUpEvenNumbers(array1));
+    console.log("Sum of even numbers of array: " + getEvenNumbersSum(array1));
 
     const array2Length = 100;
     const array2 = [];
@@ -35,11 +35,11 @@
 
     console.log("New array: " + array2.join(", "));
 
-    function squareEvenNumbers(numbers) {
+    function getEvenNumbersSquares(numbers) {
         return numbers
             .filter(number => number % 2 === 0)
-            .map((number) => number * number);
+            .map(number => number * number);
     }
 
-    console.log("Squared even numbers of new array: " + squareEvenNumbers(array2).join(", "));
+    console.log("Squared even numbers of new array: " + getEvenNumbersSquares(array2).join(", "));
 })();
