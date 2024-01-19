@@ -2,35 +2,43 @@ document.addEventListener("DOMContentLoaded", function () {
     const celsiusInputField = document.getElementById("input-celsius");
     const kelvinOutputField = document.getElementById("output-kelvin");
     const fahrenheitOutputField = document.getElementById("output-fahrenheit");
-    const button = document.getElementById("button");
+    const convertTemperatureButton = document.getElementById("convert-temperature-button");
+    const errorMessageEmptyInput = document.getElementById("error_message_empty_value");
+    const errorMessageNotANumber = document.getElementById("error_message_not_a_number");
 
-    button.addEventListener("focus", function () {
-        document.querySelector("span.error_message").style.display = "none";
+    celsiusInputField.addEventListener("focus", function () {
+        errorMessageEmptyInput.style.display = "none";
+        errorMessageNotANumber.style.display = "none";
     });
 
     function convertCelsiusToKelvin(degreesCelsius) {
-        return Number(degreesCelsius) + 273.15;
+        return degreesCelsius + 273.15;
     }
 
     function convertCelsiusToFahrenheit(degreesCelsius) {
         return degreesCelsius * 9 / 5 + 32;
     }
 
-    button.addEventListener("click", function () {
-        const celsiusTemperature = Number(celsiusInputField.value);
-        const errorMessage = document.querySelector("span.error_message");
+    convertTemperatureButton.addEventListener("click", function () {
+        const celsiusTemperatureString = celsiusInputField.value;
+        const celsiusTemperatureNumber = Number(celsiusTemperatureString);
 
         kelvinOutputField.value = "";
         fahrenheitOutputField.value = "";
 
-        if (celsiusTemperature.length === 0 || isNaN(celsiusTemperature)) {
-            errorMessage.style.display = "inline";
+        if (celsiusTemperatureString.length === 0) {
+            errorMessageEmptyInput.style.display = "inline";
             return;
         }
 
-        celsiusInputField.value = celsiusTemperature;
+        if (isNaN(celsiusTemperatureNumber)) {
+            errorMessageNotANumber.style.display = "inline";
+            return;
+        }
 
-        kelvinOutputField.value = convertCelsiusToKelvin(celsiusTemperature).toFixed(2);
-        fahrenheitOutputField.value = convertCelsiusToFahrenheit(celsiusTemperature).toFixed(2);
+        celsiusInputField.value = celsiusTemperatureNumber;
+
+        kelvinOutputField.value = convertCelsiusToKelvin(celsiusTemperatureNumber).toFixed(2);
+        fahrenheitOutputField.value = convertCelsiusToFahrenheit(celsiusTemperatureNumber).toFixed(2);
     });
 });

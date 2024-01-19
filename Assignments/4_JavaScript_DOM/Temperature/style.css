@@ -17,19 +17,16 @@
     float: left;
 }
 
-
-.input-celsius,
-.output-fahrenheit,
-.output-kelvin {
+div.input-output {
     text-align: right;
 }
 
-label {
+label.input-output {
     float: left;
     padding-right: 10px;
 }
 
-input::placeholder {
+input.input-output::placeholder {
     font-size: 14px;
 }
 

@@ -13,21 +13,22 @@
 </div>
 
 <div class="main">
-    <span class="error_message" style="display: none;">Error: wrong value</span>
-    <div class="input-celsius">
-        <label for="input-celsius"> Input, degrees Celsius: </label>
-        <input type="text" id="input-celsius" placeholder="Degrees Celsius">
+    <span class="error_message" id="error_message_empty_value" style="display: none;">Error: input is empty</span>
+    <span class="error_message" id="error_message_not_a_number" style="display: none;">Error: input is not a number</span>
+    <div class="input-output">
+        <label for="input-celsius" class="input-output">Input, degrees Celsius:</label>
+        <input type="text" id="input-celsius" class="input-output" placeholder="Degrees Celsius">
     </div>
-    <div class="output-kelvin">
-        <label for="output-kelvin"> Output, degrees Kelvin: </label>
-        <input readonly type="text" id="output-kelvin" placeholder="Degrees Kelvin">
+    <div class="input-output">
+        <label for="output-kelvin" class="input-output">Output, degrees Kelvin:</label>
+        <input readonly type="text" id="output-kelvin" class="input-output" placeholder="Degrees Kelvin">
     </div>
-    <div class="output-fahrenheit">
-        <label for="output-fahrenheit"> Output, degrees Fahrenheit: </label>
-        <input readonly type="text" id="output-fahrenheit" placeholder="Degrees Fahrenheit">
+    <div class="input-output">
+        <label for="output-fahrenheit" class="input-output">Output, degrees Fahrenheit:</label>
+        <input readonly type="text" id="output-fahrenheit" class="input-output" placeholder="Degrees Fahrenheit">
     </div>
 
-    <button class="button" id="button">Convert</button>
+    <button class="button" id="convert-temperature-button">Convert</button>
 </div>
 </body>
 </html>
