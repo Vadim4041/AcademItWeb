@@ -17,12 +17,12 @@
     margin: 10px;
 }
 
-.new_note {
-    width: 1788px;
+.new_note_input {
+    width: 90%;
 }
 
-.edit_note {
-    width: 1758px;
+.edit_note_input {
+    width: 70%;
 }
 
 .note_block {
