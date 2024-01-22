@@ -2,13 +2,14 @@
   "name": "6_underscore",
   "version": "1.0.0",
   "description": "",
-  "main": "underscore.js",
+  "main": "lodash.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
+
   "license": "ISC",
   "dependencies": {
-    "underscore": "^1.13.6"
+    "lodash": "^4.17.21"
   }
 }
