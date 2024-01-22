@@ -116,6 +116,3 @@ Vue.createApp({})
           </li>`
     })
     .mount("#app");
-
-//TODO сделать логику про trim
-//TODO добавить валидацию (bootstrap form-validation)
