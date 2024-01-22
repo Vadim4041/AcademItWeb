@@ -12,8 +12,16 @@ Vue.createApp({})
             addTodoItem() {
                 const newTodoItem = {
                     id: this.newTodoItemId,
-                    text: this.newTodoItemText
+                    text: this.newTodoItemText.trim()
                 };
+
+                const validationElements= document.querySelectorAll('.validation');
+                Array.from(validationElements).forEach(e => {e.classList.remove("is-invalid")})
+
+                if (newTodoItem.text.length === 0) {
+                    Array.from(validationElements).forEach(e => {e.classList.add("is-invalid")})
+                    return;
+                }
 
                 this.newTodoItemId++;
 
@@ -29,11 +37,16 @@ Vue.createApp({})
 
         template: `
           <form @submit.prevent="addTodoItem" class="row mb-3">
-            <label class="col">
-              <input v-model="newTodoItemText" class="form-control" type="text">
+
+            <label class="col-11 validation" id="label-for-input">
+              <input v-model="newTodoItemText" class="form-control validation" type="text">
             </label>
-            <div class="col-auto">
+            <div class="col">
               <button class="btn btn-primary">Add</button>
+            </div>
+
+            <div class="invalid-feedback">
+              Error: Note cannot be empty
             </div>
           </form>
 
@@ -63,7 +76,11 @@ Vue.createApp({})
         methods: {
             save() {
                 this.isEditing = false;
-                //TODO Сделать так, чтобы данные применились. В ребенке (item) этого сделать нельзя. Поэтому нужно послать событие вверх
+
+                if (this.editingText.length === 0){
+                    this.$emit("delete-item", this.item);
+                }
+
                 this.$emit("save-item", this.editingText);
             },
 
