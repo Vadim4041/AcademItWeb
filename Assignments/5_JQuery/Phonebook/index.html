@@ -9,25 +9,28 @@
     <script defer src="phonebook.js"></script>
 </head>
 <body>
-<h1>Phonebook</h1>
+<h1 class="phonebook_header">Phonebook</h1>
 
 <form id="form">
     <div>
-        <label for="surname">Last name: </label>
-        <input type="text" name="surname" id="surname" class="input">
-        <label for="name">Name: </label>
-        <input type="text" name="name" id="name" class="input">
-        <label for="telephone_number">Telephone number: </label>
-        <input type="text" name="telephone_number" id="telephone_number" class="input">
+        <label class="input-label">Last name: <input type="text" name="surname" id="surname" class="input"></label>
+        <span class="error_message empty_field_message empty_surname" style="display: none;">Error: field is empty</span>
+
+        <label class="input-label">Name: <input type="text" name="name" id="name" class="input"></label>
+        <span class="error_message empty_field_message empty_name" style="display: none;">Error: field is empty</span>
+
+        <label class="input-label">Telephone number: <input type="text" name="telephone_number" id="telephone_number" class="input"> </label>
+        <span class="error_message empty_field_message empty_telephone_number" style="display: none;">Error: field is empty</span>
+        <span class="error_message invalid_telephone_number_message" style="display: none;">Error: Telephone number must only contain digits</span>
+        <span class="error_message duplicate_telephone_number_message" style="display: none;">Error: This telephone number already exists</span>
+
         <button type="button" class="add_contact" id="add_contact_button">
             Add
         </button>
-        <span class="empty_field_message" style="display: none;">Error: All fields must be filled in</span>
-        <span class="invalid_telephone_number_message" style="display: none;">Error: Telephone number must only contain digits</span>
     </div>
 </form>
 
-<table id="phonebook">
+<table id="phonebook" class="phonebook_table">
     <thead>
     <tr class="header">
         <th class="id">№</th>
