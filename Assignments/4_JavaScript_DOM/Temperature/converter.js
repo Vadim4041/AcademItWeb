@@ -3,13 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const kelvinOutputField = document.getElementById("output-kelvin");
     const fahrenheitOutputField = document.getElementById("output-fahrenheit");
     const convertTemperatureButton = document.getElementById("convert-temperature-button");
-    const errorMessageEmptyInput = document.getElementById("error_message_empty_value");
-    const errorMessageNotANumber = document.getElementById("error_message_not_a_number");
-
-    celsiusInputField.addEventListener("focus", function () {
-        errorMessageEmptyInput.style.display = "none";
-        errorMessageNotANumber.style.display = "none";
-    });
+    const emptyInputErrorMessageElement = document.getElementById("error-message-empty-value");
+    const notNumberErrorMessageElement = document.getElementById("error-message-not-a-number");
 
     function convertCelsiusToKelvin(degreesCelsius) {
         return degreesCelsius + 273.15;
@@ -20,21 +15,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     convertTemperatureButton.addEventListener("click", function () {
-        const celsiusTemperatureString = celsiusInputField.value;
-        const celsiusTemperatureNumber = Number(celsiusTemperatureString);
-
         kelvinOutputField.value = "";
         fahrenheitOutputField.value = "";
 
-        if (celsiusTemperatureString.length === 0) {
-            errorMessageEmptyInput.style.display = "inline";
+        const celsiusTemperatureString = celsiusInputField.value;
+
+        if (celsiusTemperatureString.trim().length === 0) {
+            emptyInputErrorMessageElement.style.display = "inline";
             return;
         }
 
+        emptyInputErrorMessageElement.style.display = "none";
+
+        const celsiusTemperatureNumber = Number(celsiusTemperatureString);
+
         if (isNaN(celsiusTemperatureNumber)) {
-            errorMessageNotANumber.style.display = "inline";
+            notNumberErrorMessageElement.style.display = "inline";
             return;
         }
+
+        notNumberErrorMessageElement.style.display = "none";
 
         celsiusInputField.value = celsiusTemperatureNumber;
 

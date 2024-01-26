@@ -8,13 +8,10 @@
     <script defer src="converter.js"></script>
 </head>
 <body>
-<div class="header">
-    <h1>Temperature converter</h1>
-</div>
-
+<h1 class="header">Temperature converter</h1>
 <div class="main">
-    <span class="error_message" id="error_message_empty_value" style="display: none;">Error: input is empty</span>
-    <span class="error_message" id="error_message_not_a_number" style="display: none;">Error: input is not a number</span>
+    <span class="error_message" id="error-message-empty-value" style="display: none;">Error: input is empty</span>
+    <span class="error_message" id="error-message-not-a-number" style="display: none;">Error: input is not a number</span>
     <div class="input-output">
         <label for="input-celsius" class="input-output">Input, degrees Celsius:</label>
         <input type="text" id="input-celsius" class="input-output" placeholder="Degrees Celsius">
@@ -27,7 +24,6 @@
         <label for="output-fahrenheit" class="input-output">Output, degrees Fahrenheit:</label>
         <input readonly type="text" id="output-fahrenheit" class="input-output" placeholder="Degrees Fahrenheit">
     </div>
-
     <button class="button" id="convert-temperature-button">Convert</button>
 </div>
 </body>
