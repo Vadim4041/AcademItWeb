@@ -14,11 +14,11 @@
 
     console.log("First five elements of array: " + getFirstElements(array1, 5).join(", "));
 
-    function getlastElements(array, elementsCount) {
+    function getLastElements(array, elementsCount) {
         return array.slice(-elementsCount);
     }
 
-    console.log("Last five elements of array: " + getlastElements(array1, 5).join(", "));
+    console.log("Last five elements of array: " + getLastElements(array1, 5).join(", "));
 
     function getEvenNumbersSum(numbers) {
         return numbers.reduce((evenNumbersSum, number) => number % 2 === 0 ? evenNumbersSum + number : evenNumbersSum, 0);
