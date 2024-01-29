@@ -1,4 +1,6 @@
 (function () {
+    const _ = require("lodash");
+
     const people = [
         {
             age: 20,
@@ -48,7 +50,7 @@
             return 0;
         }
 
-        return people.reduce((agesSum, person) => agesSum + person.age, 0) / people.length;
+        return _.meanBy(people, person => person.age);
     }
 
     console.log("Task 1. Average age of people: " + getAverageAge(people));
