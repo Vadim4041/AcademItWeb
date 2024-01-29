@@ -1,6 +1,4 @@
 (function () {
-    const _ = require("lodash");
-
     const people = [
         {
             age: 20,
