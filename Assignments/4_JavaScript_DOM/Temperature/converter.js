@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const fahrenheitOutputField = document.getElementById("output-fahrenheit");
     const convertTemperatureButton = document.getElementById("convert-temperature-button");
     const emptyInputErrorMessageElement = document.getElementById("error-message-empty-value");
-    const notNumberErrorMessageElement = document.getElementById("error-message-not-a-number");
+    const notNumberErrorMessageElement = document.getElementById("error-message-not-number");
 
     function convertCelsiusToKelvin(degreesCelsius) {
         return degreesCelsius + 273.15;
