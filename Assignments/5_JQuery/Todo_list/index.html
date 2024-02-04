@@ -13,12 +13,18 @@
     Todo list
 </h1>
 <div class="todo_list">
-    <label>
-        <input id="new_note_input" class="new_note_input" type="text" placeholder="Write here">
-    </label>
-    <button id="add_new_note_button" class="add_new_note_button" type="button">Add</button>
-    <div><span class="error_message" style="display: none;">Error: Note cannot be empty</span></div>
-    <ul id="todo_list_content" class="todo_list_content"></ul>
+    <div class="input_row">
+        <label for="new_note_input"></label><input id="new_note_input" class="new_note_input" type="text" placeholder="Write here">
+
+        <button id="add_new_note_button" class="add_new_note_button" type="button">Add</button>
+    </div>
+    <div class="line-break"></div>
+    <div class="error_message" style="display: none;">Error: Note cannot be empty</div>
+    <div class="line-break"></div>
+
+    <div class="todo_list_content">
+        <ul id="todo_list_content" class="todo_list_content"></ul>
+    </div>
 </div>
 </body>
 </html>
