@@ -4,7 +4,8 @@ Vue.createApp({})
             return {
                 items: [],
                 newTodoItemText: "",
-                newTodoItemId: 1
+                newTodoItemId: 1,
+                isNewNoteValid: true
             }
         },
 
@@ -15,18 +16,17 @@ Vue.createApp({})
                     text: this.newTodoItemText.trim()
                 };
 
-                const validationElements= document.querySelectorAll('.validation');
-                Array.from(validationElements).forEach(e => {e.classList.remove("is-invalid")})
+                this.isNewNoteValid = true;
 
                 if (newTodoItem.text.length === 0) {
-                    Array.from(validationElements).forEach(e => {e.classList.add("is-invalid")})
+                    this.isNewNoteValid = false
+
                     return;
                 }
 
-                this.newTodoItemId++;
-
                 this.items.push(newTodoItem);
 
+                this.newTodoItemId++;
                 this.newTodoItemText = "";
             },
 
@@ -36,16 +36,15 @@ Vue.createApp({})
         },
 
         template: `
-          <form @submit.prevent="addTodoItem" class="row mb-3">
-
-            <label class="col-11 validation" id="label-for-input">
-              <input v-model="newTodoItemText" class="form-control validation" type="text">
+          <form @submit.prevent="addTodoItem" class="row mb-3 todo_list_form">
+            <label class="col-10 add_new_note_input mt-2" :class="{'is-invalid':!isNewNoteValid}" id="label-for-input">
+              <input v-model="newTodoItemText" class="form-control add_new_note_input" :class="{'is-invalid':!isNewNoteValid}" type="text">
             </label>
             <div class="col">
-              <button class="btn btn-primary">Add</button>
+              <button class="btn btn-primary mt-2">Add</button>
             </div>
 
-            <div class="invalid-feedback">
+            <div class="col-auto invalid-feedback">
               Error: Note cannot be empty
             </div>
           </form>
@@ -56,6 +55,7 @@ Vue.createApp({})
                             :item="item"
                             @save-item="item.text = $event"
                             @delete-item="deleteTodoItem(item)"></todo-list-item>
+
           </ul>`
     })
     .component("TodoListItem", {
@@ -70,15 +70,20 @@ Vue.createApp({})
             return {
                 isEditing: false,
                 editingText: this.item.text,
+                isEditedNoteValid: true
             };
         },
 
         methods: {
             save() {
                 this.isEditing = false;
+                this.isEditedNoteValid = true;
 
-                if (this.editingText.length === 0){
-                    this.$emit("delete-item", this.item);
+                if (this.editingText.trim().length === 0) {
+                    this.isEditedNoteValid = false;
+                    this.isEditing = true;
+
+                    return;
                 }
 
                 this.$emit("save-item", this.editingText);
@@ -87,32 +92,38 @@ Vue.createApp({})
             cancel() {
                 this.isEditing = false;
                 this.editingText = this.item.text;
-            },
+            }
         },
 
         template: `
           <li class="mb-2">
-            <div class="row" v-if="!isEditing">
+            <div v-if="!isEditing" class="row">
               <div class="col">
                 {{ item.text }}
               </div>
 
               <div class="col-auto">
-                <button @click="$emit('delete-item')" class="btn btn-danger me-2 " type="button">Delete</button>
-                <button @click="isEditing = true" class="btn btn-primary " type="button">Edit</button>
+                <button @click="$emit('delete-item')" class="btn btn-danger me-2" type="button">Delete</button>
+                <button @click="isEditing = true" class="btn btn-primary" type="button">Edit</button>
               </div>
             </div>
 
-            <div class="row" v-else>
-              <div class="col">
-                <input v-model="editingText" class="form-control" type="text">
+            <div v-else class="row">
+              <div class="col edit_note_input" :class="{'is-invalid':!isEditedNoteValid}">
+                <input v-model="editingText" v-on:keydown.enter="save" class="form-control edit_note_input" :class="{'is-invalid':!isEditedNoteValid}" type="text">
               </div>
 
               <div class="col-auto">
-                <button @click="cancel" class="btn btn-secondary me-2 " type="button">Cancel</button>
-                <button @click="save" class="btn btn-primary " type="button">Save</button>
+                <button @click="cancel" class="btn btn-secondary me-2" type="button">Cancel</button>
+                <button @click="save" class="btn btn-primary" type="button">Save</button>
+              </div>
+
+              <div class="col-auto invalid-feedback">
+                Error: Note cannot be empty
               </div>
             </div>
+
+
           </li>`
     })
     .mount("#app");
