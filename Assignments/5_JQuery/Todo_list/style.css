@@ -20,7 +20,6 @@
 
 .line-break {
     width: 100%;
-
 }
 
 .todo_list_content {
@@ -98,10 +97,6 @@
 
 .todo_note {
     margin-top: 8px;
-}
-
-li::marker {
-    margin-top: 10px;
 }
 
 .list_button {

@@ -4,12 +4,9 @@ $(function () {
     const addNewNoteButton = $("#add_new_note_button");
     const errorMessage = $(".error_message");
 
-    newNoteInputField.focus(function () {
+    function addNewNote() {
         newNoteInputField.removeClass("invalid_input");
         errorMessage.hide();
-    });
-
-    function addNewNote() {
         let text = newNoteInputField.val().trim();
 
         if (text.length === 0) {
@@ -31,7 +28,7 @@ $(function () {
                            <div class="line-break"></div>  
                            <div><span class="error_message edit_error" style="display: none;">Error: Note cannot be empty</span></div>`);
 
-            let noteInputField = todoNote.find(".edit_note_input");
+            const noteInputField = todoNote.find(".edit_note_input");
             noteInputField.val(text);
 
             noteInputField.focus();
@@ -51,7 +48,7 @@ $(function () {
             todoNote.find(".cancel_button").click(setViewMode);
 
             function saveInput() {
-                const editError = todoNote.find(".edit_error")
+                const editError = todoNote.find(".edit_error");
                 const validationText = noteInputField.val().trim();
 
                 if (validationText.length === 0) {
