@@ -101,10 +101,6 @@
     margin-top: 8px;
 }
 
-li::marker {
-    margin-top: 10px;
-}
-
 .list_button {
     margin-left: 10px;
 }

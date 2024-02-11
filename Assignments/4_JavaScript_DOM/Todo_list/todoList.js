@@ -4,12 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const addNewNoteButton = document.getElementById("add_new_note_button");
     const errorMessage = document.querySelector(".error_message");
 
-    newNoteInputField.addEventListener("focus", function () {
+    function addNewNote() {
         newNoteInputField.classList.remove("invalid_input");
         errorMessage.style.display = "none";
-    });
-
-    function addNewNote() {
         let text = newNoteInputField.value.trim();
 
         if (text.length === 0) {
@@ -26,9 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                       <div class='buttons_group'>
                                           <button class='list_button save_button' type='button'>Save</button>
                                           <button class='list_button cancel_button' type='button'>Cancel</button>
-                                      </div>
-                                         
-                                                  
+                                      </div>                                        
                                   </div>
                                   <div class="line-break"></div> 
                                   <div><span class="error_message edit_error" style="display: none;">Error: Note cannot be empty</span></div>`;
