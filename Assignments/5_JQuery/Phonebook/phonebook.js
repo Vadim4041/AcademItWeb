@@ -4,39 +4,47 @@ $(function () {
     const nameInput = $("#name");
     const telephoneNumberInput = $("#telephone_number");
     const addNewContactButton = $("#add_contact_button");
+    const telephoneNumbers = new Set();
     const form = $("#form");
-    const emptyFieldMessage = $("span.empty_field_message");
-    const invalidTelephoneNumberMessage = $("span.invalid_telephone_number_message");
-    const duplicateTelephoneNumberMessage = $(".duplicate_telephone_number_message")
+
+    let errorMessages = $(".error_message");
     let inputs = $(".input");
 
     inputs.focus(function () {
         inputs.removeClass("invalid");
-        emptyFieldMessage.hide();
-        invalidTelephoneNumberMessage.hide();
-        duplicateTelephoneNumberMessage.hide();
+        errorMessages.hide();
     });
 
     function addNewContact() {
+        const invalidTelephoneNumberMessage = $(".invalid_telephone_number_message");
+        const duplicateTelephoneNumberMessage = $(".duplicate_telephone_number_message");
+        const emptySurnameMessage = $(".empty_surname");
+        const emptyNameMessage = $(".empty_name");
+        const emptyTelephoneNumberMessage = $(".empty_telephone_number");
+
+
         let surname = surnameInput.val().trim();
         let name = nameInput.val().trim();
         let telephoneNumber = telephoneNumberInput.val().trim();
         let isValid = true;
 
+        inputs.removeClass("invalid");
+        errorMessages.hide();
+
         if (surname.length === 0) {
-            $(".empty_surname").show();
+            emptySurnameMessage.show();
             surnameInput.addClass("invalid");
             isValid = false;
         }
 
         if (name.length === 0) {
-            $(".empty_name").show();
+            emptyNameMessage.show();
             nameInput.addClass("invalid");
             isValid = false;
         }
 
         if (telephoneNumber.length === 0) {
-            $(".empty_telephone_number").show();
+            emptyTelephoneNumberMessage.show();
             telephoneNumberInput.addClass("invalid");
             isValid = false;
         }
@@ -47,8 +55,6 @@ $(function () {
             isValid = false;
         }
 
-        let telephoneNumbers = new Set();
-
         $("#phonebook tr").each(function () {
             telephoneNumbers.add($(this).find("td:nth-child(4)").text());
         });
@@ -57,7 +63,7 @@ $(function () {
 
         console.log(telephoneNumbers);
 
-        if (telephoneNumbers.has(telephoneNumber)) {
+        if (telephoneNumbers.has(telephoneNumber) && isValid) {
             duplicateTelephoneNumberMessage.show();
             telephoneNumberInput.addClass("invalid");
             isValid = false;
@@ -78,7 +84,6 @@ $(function () {
         nameInput.val("");
         telephoneNumberInput.val("");
 
-
         function setViewMode() {
             contact.html(`<td class="count"></td>
                           <td class="surname"></td>
@@ -86,12 +91,8 @@ $(function () {
                           <td class="telephone_number"></td>
                           <td>
                               <div class="button_group">
-                                  <button class="edit_button">
-                                      <img src="resources/editIcon.png" alt="Edit">
-                                  </button>
-                                  <button class="delete_button">
-                                      <img src="resources/deleteIcon.png" alt="Delete">
-                                  </button>                                  
+                                  <button class="edit_button">Edit</button>
+                                  <button class="delete_button">Delete</button>                                  
                               </div>
                           </td>`);
 
@@ -143,47 +144,38 @@ $(function () {
             updateTableNumeration();
 
             contact.find(".save_button").click(function () {
+                selectedContactSurnameInput = contact.find(".edit_surname_input");
                 inputs = $(".input");
-
-                inputs.focus(function () {
-                    inputs.removeClass("invalid");
-                    $(".empty_field_message").hide();
-                    $(".invalid_telephone_number_message_edit").hide();
-                    $(".duplicate_telephone_number_message_edit").hide();
-                });
+                inputs.removeClass("invalid");
+                errorMessages = $(".error_message");
+                errorMessages.hide();
 
                 isValid = true;
 
-                let validationText = selectedContactSurnameInput.val().trim();
+                const nameToValidate = selectedContactNameInput.val().trim();
+                const surnameToValidate = selectedContactSurnameInput.val().trim();
+                const telephoneNumberToValidate = selectedContactTelephoneNumberInput.val().trim();
 
-                if (validationText.length === 0) {
-                    $(".empty_surname_edit").show();
+                if (surnameToValidate.length === 0) {
+                    contact.find(".empty_surname_edit").show();
                     selectedContactSurnameInput.addClass("invalid");
                     isValid = false;
                 }
 
-                surname = validationText;
-
-                validationText = selectedContactNameInput.val().trim();
-
-                if (validationText.length === 0) {
-                    $(".empty_name_edit").show();
+                if (nameToValidate.length === 0) {
+                    contact.find(".empty_name_edit").show();
                     selectedContactNameInput.addClass("invalid");
                     isValid = false;
                 }
 
-                name = validationText;
-
-                validationText = selectedContactTelephoneNumberInput.val().trim();
-
-                if (validationText.length === 0) {
-                    $(".empty_telephone_number_edit").show();
+                if (telephoneNumberToValidate.length === 0) {
+                    contact.find(".empty_telephone_number_edit").show();
                     selectedContactTelephoneNumberInput.addClass("invalid");
                     isValid = false;
                 }
 
-                if (isNaN(Number(validationText))) {
-                    $(".invalid_telephone_number_message_edit").show();
+                if (isNaN(Number(telephoneNumberToValidate))) {
+                    contact.find(".invalid_telephone_number_message_edit").show();
                     selectedContactTelephoneNumberInput.addClass("invalid");
                     isValid = false;
                 }
@@ -192,8 +184,8 @@ $(function () {
                     telephoneNumbers.add($(this).find("td:nth-child(4)").text());
                 });
 
-                if (telephoneNumbers.has(validationText)) {
-                    $(".duplicate_telephone_number_message_edit").show();
+                if (telephoneNumbers.has(telephoneNumberToValidate) && isValid) {
+                    contact.find(".duplicate_telephone_number_message_edit").show();
                     selectedContactTelephoneNumberInput.addClass("invalid");
                     isValid = false;
                 }
@@ -204,7 +196,10 @@ $(function () {
                     return;
                 }
 
-                telephoneNumber = validationText;
+                surname = surnameToValidate;
+                telephoneNumber = telephoneNumberToValidate;
+                name = nameToValidate;
+
                 setViewMode();
             });
 
@@ -230,4 +225,4 @@ $(function () {
     });
 
     addNewContactButton.click(addNewContact);
-})
+});

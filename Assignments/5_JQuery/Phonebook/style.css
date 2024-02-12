@@ -27,7 +27,7 @@
     display: flex;
 }
 
-.input-label {
+.input_label {
     white-space: nowrap;
     line-height: 30px;
 }
@@ -42,10 +42,11 @@
 
 .edit_button, .delete_button {
     height: 30px;
-    width: 30px;
+    width: 60px;
     display: inline-flex;
     margin: 2px;
     align-items: center;
+    justify-content: center;
 }
 
 .save_button, .cancel_button {
@@ -57,13 +58,29 @@
     justify-content: center;
 }
 
-th, td {
+.add_contact_button {
+    margin-top: 10px;
+
+}
+
+.add_button {
+    align-self: flex-start;
+}
+
+.phonebook_table th,
+.phonebook_table td {
     border: 1px solid #000;
     padding: 5px;
 }
 
-form {
+.form {
     margin: 10px;
+}
+
+.input_line label {
+    clear: both;
+    display: block;
+    width: 130px;
 }
 
 .error_message {
