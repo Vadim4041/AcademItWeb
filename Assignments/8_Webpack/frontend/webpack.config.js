@@ -3,11 +3,11 @@ const path = require("path");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {VueLoaderPlugin} = require("vue-loader");
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 
 module.exports = {
-    // devtool: "source-map",
+    devtool: "source-map",
 
     target: ["web", "es5"],
 
@@ -19,13 +19,13 @@ module.exports = {
         assetModuleFilename: "[path][name][ext]?[contenthash]"
     },
 
-    // devServer: {
-    //     hot: true,
-    //     open: true,
-    //     proxy: {
-    //         "/api": "http://localhost:3000"
-    //     }
-    // },
+    devServer: {
+        hot: true,
+        open: true,
+        proxy: {
+            "/api": "http://localhost:3000"
+        }
+    },
 
     module: {
         rules: [
@@ -77,8 +77,8 @@ module.exports = {
             __VUE_PROD_DEVTOOLS__: "false",
             __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: "false"
         }),
-        // new HtmlWebpackPlugin({
-        //     template: "index.html"
-        // })
+        new HtmlWebpackPlugin({
+            template: "index.html"
+        })
     ]
 };

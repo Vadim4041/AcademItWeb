@@ -14,7 +14,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <button @click="onOk" type="button" class="btn btn-danger">
-            <slot name="button"></slot>
+            <slot name="okButtonContent"></slot>
           </button>
         </div>
       </div>

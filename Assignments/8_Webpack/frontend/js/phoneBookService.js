@@ -31,7 +31,7 @@ export default class PhoneBookService {
         return executePost(this.baseUrl, contact)
     }
 
-    editContact(newContact) {
-        return executePost(`${this.baseUrl}/${newContact.id}`, newContact)
+    editContact(Contact) {
+        return executePost(`${this.baseUrl}/${Contact.id}`, Contact)
     }
 }

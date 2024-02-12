@@ -9,7 +9,6 @@ router.get('/', function (req, res) {
 let contacts = []; // { id, name, phone }
 let currentContactId = 1;
 
-
 router.get("/api/contacts", function (req, res) {
     const term = (req.query.term || "").toUpperCase();
 
@@ -94,7 +93,6 @@ router.post("/api/contacts/:id", function (req, res) {
     const newName = req.body.newName;
     const newPhone = req.body.newPhone;
 
-
     if (!newName) {
         res.send({
             success: false,
@@ -113,7 +111,7 @@ router.post("/api/contacts/:id", function (req, res) {
         return;
     }
 
-    if (contacts.some(c => c.phone.toUpperCase() === newPhone.toUpperCase())) {
+    if (contacts.filter(c => c.id !== contactToEdit.id).some(c => c.phone.toUpperCase() === newPhone.toUpperCase())) {
         res.send({
             success: false,
             message: "Phone must be unique"
@@ -139,7 +137,5 @@ router.post("/api/contacts/:id", function (req, res) {
         message: null
     });
 })
-
-// TODO добавить редактирование (почти то же самое, что и добавление, только находим существующий контакт с таким же id и все поля обновляем.)
 
 module.exports = router;

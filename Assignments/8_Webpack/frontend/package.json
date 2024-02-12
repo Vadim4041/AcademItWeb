@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack --mode development"
-
+    "dev": "webpack --mode development",
+    "start": "npx webpack serve --mode development"
   },
   "keywords": [],
   "author": "",

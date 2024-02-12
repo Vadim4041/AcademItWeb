@@ -2,17 +2,24 @@
   <div class="container my-2" id="app">
     <h1 class="mb-3">PhoneBook</h1>
 
-    <form @submit.prevent="createContact" class="mb-3">
+    <form @submit.prevent="createContact" class="mb-3 needs-validation" novalidate>
       <h2 class="h5">Create contact</h2>
 
       <div class="row row-cols-lg-auto g-3 align-items-center">
-        <div class="col-12">
-          <input v-model="name" type="text" class="form-control" placeholder="Name">
+        <div class="col" :class="{'is-invalid':!isNameValid}">
+          <input v-model.trim="name" type="text" class="form-control" placeholder="Name" :class="{'is-invalid':!isNameValid}">
+          <div class="col invalid-feedback">
+            Error: Name cannot be empty
+          </div>
         </div>
-        <div class="col-12">
-          <input v-model="phone" type="text" class="form-control" placeholder="Phone">
+
+        <div class="col">
+          <input v-model.trim="phone" type="text" class="form-control" placeholder="Phone" :class="{'is-invalid':!isPhoneValid}">
+          <div class="col invalid-feedback">
+            Error: Phone is not valid
+          </div>
         </div>
-        <div class="col-12">
+        <div class="col">
           <button class="btn btn-primary">Create</button>
         </div>
       </div>
@@ -46,7 +53,7 @@
           <td v-text="index + 1"></td>
           <td v-text="contact.name"></td>
           <td v-text="contact.phone"></td>
-          <td>
+          <td class="col-2 text-nowrap">
             <button @click="showEditContactConfirmModal(contact)" class="btn btn-primary me-2" type="button">Edit</button>
             <button @click="showDeleteContactConfirmModal(contact)" class="btn btn-danger" type="button">Delete</button>
           </td>
@@ -58,22 +65,28 @@
     <bootstrap-modal ref="deleteConfirmModal" @ok="deleteContact">
       <template v-slot:header>Delete confirmation</template>
       <template v-slot:body>Do you really want to delete this contact?</template>
-      <template v-slot:button>Delete</template>
+      <template v-slot:okButtonContent>Delete</template>
     </bootstrap-modal>
 
     <bootstrap-modal ref="editConfirmModal" @ok="editContact">
       <template v-slot:header>Edit confirmation</template>
       <template v-slot:body>
-        <div class="row">
-          <div class="row mt-1 ms-1">
-            Name: <input v-model="newName" type="text">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Name:</span>
+          <input v-model="newName" type="text" class="form-control" :class="{'is-invalid':!isNewNameValid}">
+          <div class="invalid-feedback">
+            Error: Name cannot be empty
           </div>
-          <div class="row mt-1 ms-1">
-            Phone: <input v-model="newPhone" type="text">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Phone:</span>
+          <input v-model="newPhone" type="text" class="form-control" :class="{'is-invalid':!isNewPhoneValid}">
+          <div class="invalid-feedback">
+            Error: Phone is invalid
           </div>
         </div>
       </template>
-      <template v-slot:button>Edit</template>
+      <template v-slot:okButtonContent>Save</template>
     </bootstrap-modal>
   </div>
 </template>
@@ -95,11 +108,15 @@ export default {
       term: "",
       name: "",
       phone: "",
+      isNameValid: true,
+      isPhoneValid: true,
       service: new PhoneBookService(),
       contactToDelete: null,
       contactToEdit: null,
       newName: "",
-      newPhone: ""
+      newPhone: "",
+      isNewNameValid: true,
+      isNewPhoneValid: true
     };
   },
 
@@ -113,6 +130,25 @@ export default {
         name: this.name,
         phone: this.phone
       };
+
+      this.isNameValid = true;
+      this.isPhoneValid = true;
+
+      if (contact.name.length === 0) {
+        this.isNameValid = false
+      }
+
+      if (contact.phone.length === 0 || isNaN(Number(contact.phone))) {
+        this.isPhoneValid = false
+      }
+
+      if (this.contacts.some(c => c.phone.toUpperCase() === this.phone.toUpperCase())) {
+        this.isPhoneValid = false
+      }
+
+      if (!this.isNameValid || !this.isPhoneValid) {
+        return;
+      }
 
       this.service.createContact(contact).then(response => {
         if (!response.success) {
@@ -157,6 +193,25 @@ export default {
         newName: this.newName,
         newPhone: this.newPhone
       };
+
+      this.isNewNameValid = true;
+      this.isNewPhoneValid = true;
+
+      if (newContact.newName.length === 0) {
+        this.isNewNameValid = false
+      }
+
+      if (newContact.newPhone.length === 0 || isNaN(Number(newContact.newPhone))) {
+        this.isNewPhoneValid = false
+      }
+
+      if (this.contacts.filter(c => c.id !== newContact.id).some(c => c.phone.toUpperCase() === newContact.newPhone.toUpperCase())) {
+        this.isNewPhoneValid = false
+      }
+
+      if (!this.isNewNameValid || !this.isNewPhoneValid) {
+        return;
+      }
 
       this.service.editContact(newContact).then(response => {
         if (!response.success) {
