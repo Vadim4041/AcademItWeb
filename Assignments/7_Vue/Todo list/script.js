@@ -6,23 +6,23 @@ Vue.createApp({})
                 newTodoItemText: "",
                 newTodoItemId: 1,
                 isNewNoteValid: true
-            }
+            };
         },
 
         methods: {
             addTodoItem() {
-                const newTodoItem = {
-                    id: this.newTodoItemId,
-                    text: this.newTodoItemText.trim()
-                };
-
                 this.isNewNoteValid = true;
 
-                if (newTodoItem.text.length === 0) {
-                    this.isNewNoteValid = false
+                if (this.newTodoItemText.length === 0) {
+                    this.isNewNoteValid = false;
 
                     return;
                 }
+
+                const newTodoItem = {
+                    id: this.newTodoItemId,
+                    text: this.newTodoItemText
+                };
 
                 this.items.push(newTodoItem);
 
@@ -36,11 +36,11 @@ Vue.createApp({})
         },
 
         template: `
-          <form @submit.prevent="addTodoItem" class="row mb-3 todo_list_form">
-            <label class="col-10 add_new_note_input mt-2" :class="{'is-invalid':!isNewNoteValid}" id="label-for-input">
-              <input v-model="newTodoItemText" class="form-control add_new_note_input" :class="{'is-invalid':!isNewNoteValid}" type="text">
+          <form @submit.prevent="addTodoItem" class="row mb-3 justify-content-between todo_list_form">
+            <label class="col add_new_note_input mt-2" :class="{'is-invalid':!isNewNoteValid}" id="label-for-input">
+              <input v-model.trim="newTodoItemText" class="form-control add_new_note_input" :class="{'is-invalid':!isNewNoteValid}" type="text">
             </label>
-            <div class="col">
+            <div class="col-auto">
               <button class="btn btn-primary mt-2">Add</button>
             </div>
 
@@ -55,7 +55,6 @@ Vue.createApp({})
                             :item="item"
                             @save-item="item.text = $event"
                             @delete-item="deleteTodoItem(item)"></todo-list-item>
-
           </ul>`
     })
     .component("TodoListItem", {
@@ -65,6 +64,8 @@ Vue.createApp({})
                 required: true
             }
         },
+
+        emits: ["save-item", "delete-item"],
 
         data() {
             return {
@@ -109,8 +110,8 @@ Vue.createApp({})
             </div>
 
             <div v-else class="row">
-              <div class="col edit_note_input" :class="{'is-invalid':!isEditedNoteValid}">
-                <input v-model="editingText" v-on:keydown.enter="save" class="form-control edit_note_input" :class="{'is-invalid':!isEditedNoteValid}" type="text">
+              <div class="col edit_note_input" :class="{'is-invalid': !isEditedNoteValid}">
+                <input v-model.trim="editingText" @keydown.enter="save" class="form-control edit_note_input" :class="{'is-invalid': !isEditedNoteValid}" type="text">
               </div>
 
               <div class="col-auto">
@@ -122,8 +123,6 @@ Vue.createApp({})
                 Error: Note cannot be empty
               </div>
             </div>
-
-
           </li>`
     })
     .mount("#app");
