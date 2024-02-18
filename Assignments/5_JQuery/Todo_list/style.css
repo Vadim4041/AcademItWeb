@@ -33,6 +33,7 @@
     display: flex;
     margin-top: 10px;
     flex-flow: row nowrap;
+    height: 25px;
 }
 
 .edit_note_input {
