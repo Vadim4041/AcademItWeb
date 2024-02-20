@@ -18,13 +18,15 @@
         <div class="error_message empty_field_message empty_surname" style="display: none;">Error: field is empty</div>
     </div>
     <div class="input_line">
-        <label class="input_label" for="name">Name: </label><input type="text" name="name" id="name" class="input">
+        <label class="input_label" for="name">Name: </label>
+        <input type="text" name="name" id="name" class="input">
         <div class="error_message empty_field_message empty_name" style="display: none;">Error: field is empty</div>
     </div>
     <div class="input_line">
-        <label class="input_label" for="telephone_number">Telephone number: </label><input type="text" name="telephone_number" id="telephone_number" class="input">
+        <label class="input_label" for="telephone_number">Telephone number: </label>
+        <input type="text" name="telephone_number" id="telephone_number" class="input">
         <div class="error_message empty_field_message empty_telephone_number" style="display: none;">Error: field is empty</div>
-        <div class="error_message invalid_telephone_number_message" style="display: none;">Error: Telephone number must only contain digits</div>
+<!--        <div class="error_message invalid_telephone_number_message" style="display: none;">Error: Telephone number must only contain digits</div>-->
         <div class="error_message duplicate_telephone_number_message" style="display: none;">Error: This telephone number already exists</div>
     </div>
     <div class="add_button">
@@ -34,11 +36,10 @@
     </div>
 </form>
 
-
 <table id="phonebook" class="phonebook_table">
     <thead>
     <tr class="header">
-        <th class="id">№</th>
+        <th class="number">№</th>
         <th class="surname">Last name</th>
         <th class="name">Name</th>
         <th class="telephone_number">Telephone number</th>

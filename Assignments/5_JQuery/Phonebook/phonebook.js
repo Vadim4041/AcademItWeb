@@ -4,11 +4,15 @@ $(function () {
     const nameInput = $("#name");
     const telephoneNumberInput = $("#telephone_number");
     const addNewContactButton = $("#add_contact_button");
-    const telephoneNumbers = new Set();
     const form = $("#form");
+    const duplicateTelephoneNumberMessage = $(".duplicate_telephone_number_message");
+    const emptySurnameMessage = $(".empty_surname");
+    const emptyNameMessage = $(".empty_name");
+    const emptyTelephoneNumberMessage = $(".empty_telephone_number");
+    const errorMessages = $(".error_message");
+    const inputs = $(".input");
 
-    let errorMessages = $(".error_message");
-    let inputs = $(".input");
+    const telephoneNumbers = new Set();
 
     inputs.focus(function () {
         inputs.removeClass("invalid");
@@ -16,13 +20,6 @@ $(function () {
     });
 
     function addNewContact() {
-        const invalidTelephoneNumberMessage = $(".invalid_telephone_number_message");
-        const duplicateTelephoneNumberMessage = $(".duplicate_telephone_number_message");
-        const emptySurnameMessage = $(".empty_surname");
-        const emptyNameMessage = $(".empty_name");
-        const emptyTelephoneNumberMessage = $(".empty_telephone_number");
-
-
         let surname = surnameInput.val().trim();
         let name = nameInput.val().trim();
         let telephoneNumber = telephoneNumberInput.val().trim();
@@ -49,18 +46,6 @@ $(function () {
             isValid = false;
         }
 
-        if (isNaN(Number(telephoneNumber))) {
-            invalidTelephoneNumberMessage.show();
-            telephoneNumberInput.addClass("invalid");
-            isValid = false;
-        }
-
-        $("#phonebook tr").each(function () {
-            telephoneNumbers.add($(this).find("td:nth-child(4)").text());
-        });
-
-        telephoneNumbers.delete("");
-
         console.log(telephoneNumbers);
 
         if (telephoneNumbers.has(telephoneNumber) && isValid) {
@@ -72,6 +57,8 @@ $(function () {
         if (!isValid) {
             return;
         }
+
+        telephoneNumbers.add(telephoneNumber);
 
         const contact = $("<tr>");
 
@@ -85,7 +72,7 @@ $(function () {
         telephoneNumberInput.val("");
 
         function setViewMode() {
-            contact.html(`<td class="count"></td>
+            contact.html(`<td class="number"></td>
                           <td class="surname"></td>
                           <td class="name"></td>
                           <td class="telephone_number"></td>
@@ -99,18 +86,19 @@ $(function () {
             contact.find(".surname").text(surname);
             contact.find(".name").text(name);
             contact.find(".telephone_number").text(telephoneNumber);
+
             contact.find(".delete_button").click(function () {
                 telephoneNumbers.delete(contact.find(".telephone_number").text());
                 contact.remove();
+                updateTableNumeration();
             });
+            contact.find(".edit_button").click(setEditMode);
 
             updateTableNumeration();
-
-            contact.find(".edit_button").click(setEditMode);
         }
 
         function setEditMode() {
-            contact.html(`<td class="count"></td>
+            contact.html(`<td class="number"></td>
                           <td class="surname">
                               <input class="edit_surname_input input" type="text">
                               <div class="error_message empty_field_message empty_surname_edit" style="display: none;">Error: field is empty</div>
@@ -122,7 +110,6 @@ $(function () {
                           <td class="telephone_number">
                               <input class="edit_telephone_number_input input" type="text">
                               <div class="error_message empty_field_message empty_telephone_number_edit" style="display: none;">Error: field is empty</div>
-                              <span class="error_message invalid_telephone_number_message_edit" style="display: none;">Error: Telephone number must only contain digits</span>
                               <span class="error_message duplicate_telephone_number_message_edit" style="display: none;">Error: This telephone number already exists</span>
                           </td>
                           <td>
@@ -132,22 +119,24 @@ $(function () {
                               </div>
                           </td>`);
 
-            let selectedContactSurnameInput = contact.find(".edit_surname_input");
+            const selectedContactSurnameInput = contact.find(".edit_surname_input");
             selectedContactSurnameInput.val(surname);
 
-            let selectedContactNameInput = contact.find(".edit_name_input");
+            const selectedContactNameInput = contact.find(".edit_name_input");
             selectedContactNameInput.val(name);
 
-            let selectedContactTelephoneNumberInput = contact.find(".edit_telephone_number_input");
+            const selectedContactTelephoneNumberInput = contact.find(".edit_telephone_number_input");
             selectedContactTelephoneNumberInput.val(telephoneNumber);
 
             updateTableNumeration();
 
             contact.find(".save_button").click(function () {
-                selectedContactSurnameInput = contact.find(".edit_surname_input");
-                inputs = $(".input");
+
+                // const inputs = $(".input");
+                const inputs = $("#phonebook tr.input");
                 inputs.removeClass("invalid");
-                errorMessages = $(".error_message");
+
+                const errorMessages = $("#phonebook tr.error_message");
                 errorMessages.hide();
 
                 isValid = true;
@@ -174,31 +163,24 @@ $(function () {
                     isValid = false;
                 }
 
-                if (isNaN(Number(telephoneNumberToValidate))) {
-                    contact.find(".invalid_telephone_number_message_edit").show();
-                    selectedContactTelephoneNumberInput.addClass("invalid");
-                    isValid = false;
-                }
-
-                $("#phonebook tr").each(function () {
-                    telephoneNumbers.add($(this).find("td:nth-child(4)").text());
-                });
-
-                if (telephoneNumbers.has(telephoneNumberToValidate) && isValid) {
+                if (telephoneNumbers.has(telephoneNumberToValidate) && isValid && telephoneNumberToValidate !== telephoneNumber) {
                     contact.find(".duplicate_telephone_number_message_edit").show();
                     selectedContactTelephoneNumberInput.addClass("invalid");
                     isValid = false;
                 }
 
-                console.log(telephoneNumbers);
-
                 if (!isValid) {
                     return;
                 }
 
+                telephoneNumbers.delete(telephoneNumber);
+
                 surname = surnameToValidate;
                 telephoneNumber = telephoneNumberToValidate;
                 name = nameToValidate;
+
+                telephoneNumbers.add(telephoneNumberToValidate);
+                console.log(telephoneNumbers);
 
                 setViewMode();
             });
@@ -211,7 +193,7 @@ $(function () {
 
     function updateTableNumeration() {
         $("#phonebook tr").each(function (i) {
-            $(this).find("td:first").text(i);
+            $(this).find("td.number").text(i);
         });
     }
 
